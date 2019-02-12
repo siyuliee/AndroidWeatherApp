@@ -10,27 +10,30 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Siyu driving now
 public class Function {
-    //函数getMethod(String url)中的参数url为传入URL链接，
     private static String getMethod(String url)
     {
         String result=null;
         InputStream inputStream = null;
         try {
-            //创建URL对象
+            //create an URL object
             URL Url = new URL(url);
-            //获得URLConnection类对象，再用URLConnection类对象的connect（）方法进行连接
+            //get the object of the URLConnection class，
+            //use the connect() method of the  URLConnection class to connect
             HttpURLConnection connection= (HttpURLConnection) Url.openConnection();
-            //在HttpURLConnection里setDoInput(true)一般设置为true，因为需要接收数据，而setDoOutput(false)默认是false，因为get方法中参数都包含在url链接中
+            //Inside HttpURLConnection, the input argument of setDoInput(true) normally set as true，
+            // as it needs to receive data
+            // but the default input argument of setDoOutput(false) is false，
+            //as the argument of the get method is contained in the url
             connection.setDoInput(true);
-            //setRequestMethod("GET")设置请求方法为Get方法
+            //setRequestMethod("GET"): set the request method as Get method
             connection.setRequestMethod("GET");
-            //与服务器构建链接
+            //get connection with the server
             connection.connect();
-            //获取输入流
+            //get the input stream
             inputStream = connection.getInputStream();
-            //读取byte数据
+            //read byte data
             result= readfile(inputStream);
 
         } catch (MalformedURLException e) {
@@ -40,19 +43,19 @@ public class Function {
         }finally{
             try {
                 if(inputStream!=null)
-                //关闭输入流
+                //close input stream
                 inputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return result;
-    }
+    }  //end of Siyu driving, Chengjing driving now
 
     private static String readfile(InputStream input) throws IOException {
         byte[] buffer = new byte[2048];
         ByteArrayOutputStream readline= new ByteArrayOutputStream();
-        int length; //当前读的字节数的长度
+        int length; //the length of currently read bytes
         while((length=input.read(buffer))>-1){
             readline.write(buffer,0,length);
 
@@ -61,34 +64,28 @@ public class Function {
         return result;
     }
 
-    //函数postMethod(String url,String jsdata)中的参数url为传入URL链接，jsdata是json参数
+    //another method, postMethod(String url,String jsdata), we don't use here
     private static String postMethod(String url,String jsdata)
     {
         String result=null;
         try {
             URL Url = new URL(url);
             HttpURLConnection connection= (HttpURLConnection) Url.openConnection();
-            //允许构建输出流
             connection.setDoOutput(true);
-            //允许构建输入流
             connection.setDoInput(true);
             connection.setUseCaches(false);
-            //设置请求为Post方法
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Connection", "Keep-Alive");
-            //设置编码方式为UTF-8
             connection.setRequestProperty("Charset", "UTF-8");
-            //数据格式可以根据自己需要设置，这里采用的是json数据格式
             connection.setRequestProperty("contentType", "application/json");
             byte[] data = jsdata.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(data.length));
             connection.connect();
-            //将数据上传到服务器
             OutputStream out = new DataOutputStream(connection.getOutputStream());
             out.write(data);
             out.flush();
             out.close();
-            //判断是否响应成功，成功则读取数据
+
             if (HttpURLConnection.HTTP_OK == connection.getResponseCode()){
                 InputStream inputStream = connection.getInputStream();
                 byte[] bytes=new byte[inputStream.available()];
@@ -101,7 +98,7 @@ public class Function {
             e.printStackTrace();
         }
         return result;
-    }
+    }  //end of Chengjing driving, Siyu is driving now.
 
 
     private static List<String> parselocation(String data){
@@ -123,7 +120,7 @@ public class Function {
         String result=getMethod("https://maps.googleapis.com/maps/api/geocode/json?address="+place+"&key=AIzaSyDybcUf34eT2jk6VtlxEK1jSg4zeNQdc2k");
         List location=parselocation(result);
         return location;
-    }
+    }  //end of Siyu driving, Chengjing is driving now.
 
     private static List parseweather(String data){
         JsonParser jsonParser = new JsonParser();
@@ -155,6 +152,5 @@ public class Function {
         List weather= parseweather(result);
         return weather;
     }
-
-}
+}  //end of Chengjing driving
 

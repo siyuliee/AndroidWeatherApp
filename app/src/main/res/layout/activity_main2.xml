@@ -7,7 +7,7 @@
     tools:context=".Main2Activity">
 
 
-
+<!--Siyu is driving now, writing the layout of the third page -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_marginBottom="50px"

@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
+//Siyu driving now
 public class MainActivity extends AppCompatActivity {
-//    public static final String EXTRA_MESSAGE = "com.example.weatherapplication.MESSAGE";
+
     private Button button;
     private EditText editText;
     private TextView textView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         textView = findViewById(R.id.textView);
         editText = findViewById(R.id.editText);
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 HttpThread http = new HttpThread(editText.getText().toString().replace(" ","+"));
                 http.start();
-
             }
         });
     }
@@ -79,16 +78,11 @@ public class MainActivity extends AppCompatActivity {
                     String address = editText.getText().toString();
                     intent.putExtra("address",address);
 
-//                    intent.putExtra("location",message);
-//                    intent.putExtra("lat",final_lat);
-//                    intent.putExtra("log",final_log);
-
                     startActivity(intent);
                     break;
             }
         }
-    };
-
+    };   //end of Siyu driving, Chengjing driving now.
 
     //create a new http thread
     protected class HttpThread extends Thread{
@@ -111,6 +105,6 @@ public class MainActivity extends AppCompatActivity {
             msg.obj = hashMap;
             handle.sendMessage(msg);
         }
-    }
+    } //end og Chengjing driving
 
 }

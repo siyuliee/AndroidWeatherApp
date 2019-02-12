@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -15,7 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-
+//Siyu is driving now
 public class Main2Activity extends AppCompatActivity implements OnMapReadyCallback {
 
     private MapView mMapView;
@@ -76,7 +77,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         mMapView.getMapAsync(this);
     }
 
-
+//end of Siyu driving, Chengjing is driving now
     public void onMapReady(GoogleMap googleMap) {
         // Add a marker in the specific location
         // and move the map's camera to the same location.
@@ -84,6 +85,9 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         LatLng location = new LatLng(lat, log);
         googleMap.addMarker(new MarkerOptions().position(location).title(address));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+        CameraUpdate zoom = CameraUpdateFactory.zoomTo(13);
+        googleMap.animateCamera(zoom);
 
     }
 
@@ -140,4 +144,4 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-}
+}  //end of Chengjing driving
